@@ -48,6 +48,7 @@
  *      #define HAVE_MSVC_7                 implementation-defined
  *      #define HAVE_MSVC_8                 implementation-defined
  *      #define HAVE_MSVC_9                 implementation-defined
+ *      #define HAVE_SUNPRO                 implementation-defined
  */
 
 #pragma once
@@ -183,6 +184,25 @@
 #      define HAVE_GCC_4 1
 #   elif COMPILER_MAJOR_VERSION == 3
 #      define HAVE_GCC_3 1
+#   endif
+#endif
+
+// SUNPRO
+// ------
+
+#if !defined(COMPILER_DETECTED) && defined(__SUNPRO_CC)
+#   define HAVE_SUNPRO
+#   define COMPILER_DETECTED HAVE_SUNPRO
+#   if __SUNPRO_CC < 0x590
+        // VERSION = 0xVRP
+#       define COMPILER_MAJOR_VERSION (__SUNPRO_CC & 0xF00) >> 8
+#       define COMPILER_MINOR_VERSION (__SUNPRO_CC & 0x0F0) >> 4
+#       define COMPILER_PATCH_VERSION __SUNPRO_CC & 0x00F
+#   else
+        // VERSION = 0xVRRP
+#       define COMPILER_MAJOR_VERSION (__SUNPRO_CC & 0xF000) >> 12
+#       define COMPILER_MINOR_VERSION 10*((__SUNPRO_CC & 0x0F00) >> 8) + ((__SUNPRO_CC & 0x00F0) >> 4)
+#       define COMPILER_PATCH_VERSION __SUNPRO_CC & 0x000F
 #   endif
 #endif
 
