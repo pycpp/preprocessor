@@ -18,6 +18,9 @@
  *      #define CPP17_INLINE_VARIABLES          implementation-defined
  *      #define CPP17_NODISCARD                 implementation-defined
  *      #define CPP17_UNUSED                    implementation-defined
+ *      #define PYCPP_WEAK_ATTRIBUTE            implementation-defined
+ *      #define PYCPP_MALLOC_ATTRIBUTE          implementation-defined
+ *      #define PYCPP_WEAK_ASM                  implementation-defined
  */
 
 #pragma once
@@ -124,4 +127,20 @@
 #if (defined(HAVE_GCC) && (COMPILER_VERSION_CODE < COMPILER_VERSION(5, 1, 0))) || \
     (defined(HAVE_CLANG) && COMPILER_VERSION_CODE < COMPILER_VERSION(3, 0, 0))
 #   define CPP11_PARTIAL_IOS 1
+#endif
+
+// NON-STANDARD
+// ------------
+
+// Non-standard tools with reasonable defaults on compilers that do
+// not support them.
+
+#ifdef HAVE_MSVC
+#   define PYCPP_WEAK_ATTRIBUTE
+#   define PYCPP_MALLOC_ATTRIBUTE
+#   define PYCPP_WEAK_ASM(x)
+#else
+#   define PYCPP_WEAK_ATTRIBUTE __attribute__((weak))
+#   define PYCPP_MALLOC_ATTRIBUTE __attribute__((malloc))
+#   define PYCPP_WEAK_ASM(x) asm("")
 #endif
