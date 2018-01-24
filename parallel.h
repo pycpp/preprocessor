@@ -32,16 +32,16 @@
 #include <pycpp/config.h>
 #include <pycpp/preprocessor/compiler.h>
 #if defined(HAVE_CPP17)
-#   include <pycpp/stl/execution.h>
+#   include <execution>
 #endif
 
 // MACROS
 // ------
 
 #if defined(HAVE_CPP17)
-#   define SEQUENTIAL_EXECUTION PYCPP_NAMESPACE::execution::seq,
-#   define PARALLEL_EXECUTION PYCPP_NAMESPACE::execution::par,
-#   define PARALLEL_UNSEQUENCED_EXECUTION PYCPP_NAMESPACE::execution::par_unseq,
+#   define SEQUENTIAL_EXECUTION std::execution::seq,
+#   define PARALLEL_EXECUTION std::execution::par,
+#   define PARALLEL_UNSEQUENCED_EXECUTION std::execution::par_unseq,
 #else
 #   define SEQUENTIAL_EXECUTION
 #   define PARALLEL_EXECUTION

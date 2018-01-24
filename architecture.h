@@ -20,8 +20,8 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <limits.h>
+#include <cstdint>
+#include <climits>
 
 // WINDOWS
 // -------
@@ -54,26 +54,34 @@
 // OTHER
 // -----
 
+#ifndef INT128_MAX
+#   define INT128_MAX 0x7fffffffffffffffffffffffffffffff
+#endif
+
+#ifndef UINT128_MAX
+#   define UINT128_MAX 0xffffffffffffffffffffffffffffffff
+#endif
+
 // Use uintptr_t rather than size_t, since we might be on a segmented
 // architecture. Go smallest-to-largest, since we don't want
 // to check values too large for type.
 #ifndef SYSTEM_ARCHITECTURE
-#   if UINTPTR_MAX == 0xffff
+#   if UINTPTR_MAX == UINT16_MAX
 #       define SYSTEM_ARCHITECTURE 16
 #   endif
 #endif
 #ifndef SYSTEM_ARCHITECTURE
-#   if UINTPTR_MAX == 0xffffffff
+#   if UINTPTR_MAX == UINT32_MAX
 #       define SYSTEM_ARCHITECTURE 32
 #   endif
 #endif
 #ifndef SYSTEM_ARCHITECTURE
-#   if UINTPTR_MAX == 0xffffffffffffffff
+#   if UINTPTR_MAX == UINT64_MAX
 #       define SYSTEM_ARCHITECTURE 64
 #   endif
 #endif
 #ifndef SYSTEM_ARCHITECTURE
-#   if UINTPTR_MAX == 0xffffffffffffffffffffffffffffffff
+#   if UINTPTR_MAX == UINT128_MAX
 #       define SYSTEM_ARCHITECTURE 128
 #   endif
 #endif
@@ -90,22 +98,22 @@
 // requiring 32-bit pointers. Go smallest-to-largest, since we don't
 // want to check values too large for type.
 #ifndef MEMORY_ARCHITECTURE
-#   if SIZE_MAX == 0xffff
+#   if SIZE_MAX == UINT16_MAX
 #       define MEMORY_ARCHITECTURE 16
 #   endif
 #endif
 #ifndef MEMORY_ARCHITECTURE
-#   if SIZE_MAX == 0xffffffff
+#   if SIZE_MAX == UINT32_MAX
 #       define MEMORY_ARCHITECTURE 32
 #   endif
 #endif
 #ifndef MEMORY_ARCHITECTURE
-#   if SIZE_MAX == 0xffffffffffffffff
+#   if SIZE_MAX == UINT64_MAX
 #       define MEMORY_ARCHITECTURE 64
 #   endif
 #endif
 #ifndef MEMORY_ARCHITECTURE
-#   if SIZE_MAX == 0xffffffffffffffffffffffffffffffff
+#   if SIZE_MAX == UINT128_MAX
 #       define MEMORY_ARCHITECTURE 128
 #   endif
 #endif
