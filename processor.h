@@ -27,6 +27,14 @@
  *      #define PROCESSOR_ALPHA         implementation-defined
  *      #define PROCESSOR_ALPHA64       implementation-defined
  *      #define PROCESSOR_ARM           implementation-defined
+ *      #define PROCESSOR_ARM_V2        implementation-defined
+ *      #define PROCESSOR_ARM_V3        implementation-defined
+ *      #define PROCESSOR_ARM_V4T       implementation-defined
+ *      #define PROCESSOR_ARM_V5        implementation-defined
+ *      #define PROCESSOR_ARM_V5T       implementation-defined
+ *      #define PROCESSOR_ARM_V6        implementation-defined
+ *      #define PROCESSOR_ARM_V6T2      implementation-defined
+ *      #define PROCESSOR_ARM_V7        implementation-defined
  *      #define PROCESSOR_ARM32         implementation-defined
  *      #define PROCESSOR_ARM64         implementation-defined
  *      #define PROCESSOR_BLACKFIN      implementation-defined
@@ -124,10 +132,29 @@
 #if !defined (PROCESSOR_DETECTED)
 #   if defined(__arm__) || defined(__thumb__) || defined(__arm) || defined(_ARM) || defined(_M_ARM) || defined(_M_ARMT) || defined(__aarch64__)
 #       define PROCESSOR_ARM
+        // 32-bit or 64-bit
 #       if defined(__aarch64__)
 #          define PROCESSOR_ARM64
 #       else
 #          define PROCESSOR_ARM32
+#       endif
+        // ARM version
+#       if defined(__ARM_ARCH_2__)
+#           define PROCESSOR_ARM_V2
+#       elif defined(__ARM_ARCH_3__) || defined(__ARM_ARCH_3M__)
+#           define PROCESSOR_ARM_V3
+#       elif defined(__ARM_ARCH_4T__) || defined(__TARGET_ARM_4T)
+#           define PROCESSOR_ARM_V4T
+#       elif defined(__ARM_ARCH_5__) || defined(__ARM_ARCH_5E__)
+#           define PROCESSOR_ARM_V5
+#       elif defined(__ARM_ARCH_5T__) || defined(__ARM_ARCH_5TE__) || defined(__ARM_ARCH_5TEJ__)
+#           define PROCESSOR_ARM_V5T
+#       elif defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_6J__) || defined(__ARM_ARCH_6K__) || defined(__ARM_ARCH_6Z__) || defined(__ARM_ARCH_6ZK__)
+#           define PROCESSOR_ARM_V6
+#       elif defined(__ARM_ARCH_6T2__)
+#           define PROCESSOR_ARM_V6T2
+#       elif defined(__ARM_ARCH_7__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7S__)
+#           define PROCESSOR_ARM_V7
 #       endif
 #       define PROCESSOR_DETECTED
 #   endif

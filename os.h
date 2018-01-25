@@ -33,7 +33,6 @@
  *      #define OS_BSD4_4           implementation-defined
  *      #define OS_BSDI             implementation-defined
  *      #define OS_CONVEX           implementation-defined
- *      #define OS_CRAY             implementation-defined
  *      #define OS_CYGWIN           implementation-defined
  *      #define OS_DARWIN           implementation-defined
  *      #define OS_DGUX             implementation-defined
@@ -421,17 +420,6 @@
 // DETECTION
 #   if defined(__SYMBIAN32__)
 #       define OS_SYMBIAN
-#       define OS_DETECTED
-#   endif
-#endif
-
-// CRAY
-// ----
-
-#if !defined(OS_DETECTED)
-// DETECTION
-#   if defined(_CRAYC)
-#       define OS_CRAY
 #       define OS_DETECTED
 #   endif
 #endif
