@@ -3,8 +3,10 @@
 **Table of Contents**
 
 - [Introduction](#introduction)
+- [ABI](#abi)
 - [Architecture](#architecture)
 - [Byte Order](#byte-order)
+- [Cache](#cache)
 - [Compiler](#compiler)
 - [Compiler Traits](#compiler-traits)
 - [Operating System](#operating-system)
@@ -16,6 +18,10 @@
 
 PyCPP builds upon a platform abstraction library for cross-compiler support, which depends upon the C preprocessor for platform-specific configurations. PyCPP extends these macros to define useful traits for the library user: macros for cross-compiler thread-local storage, parallel execution, C++ standard support and workarounds, and macros to detect the system operating system, byteorder, and processor/architecture.
 
+## ABI
+
+Macros to detect the C++ ABI. Defines the macro `HAVE_CXXABI` if the compiler has `cxxabi.h`, and uses the Itanium ABI.
+
 ## Architecture
 
 Macros to determine the processor and memory architecture. `SYSTEM_ARCHITECTURE` is defined as `sizeof(uintptr_t)` in bits (16, 32, 64, etc.), or the size of a pointer sufficient to convert to and from a void pointer on the system. `MEMORY_ARCHITECTURE` is defined as `sizeof(size_t)` in bits (16, 32, 64, etc.), or the number of bits required to represent an object's size in a single memory segment. In segmented x86 memory models, such as the Intel 8086, these are not necessarily identical: the size of a pointer may be larger than the maximum object size.
@@ -25,6 +31,10 @@ Architecture also defines 4 macros to detect type alignment to a memory boundary
 ## Byte Order
 
 Byte-order contains preprocessor macros and functions to detect and convert to and from the host byte-order. PyCPP defines `BYTE_ORDER` to either `LITTLE_ENDIAN` or `BIG_ENDIAN`, and add cross-platform function-like macros similar to Linux's `<endian.h>` definitions. See [byteorder.h](/byteorder.h) for more details.
+
+## Cache
+
+Cache attempts to determine the L1 cache line size, and writes the size to `CACHELINE_SIZE`. It also defines another macro, `CACHELINE_ALIGNED`, which aligns a variable to the cache size alignment.
 
 ## Compiler
 
