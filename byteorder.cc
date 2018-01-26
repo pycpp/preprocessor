@@ -3,12 +3,17 @@
 
 #include <pycpp/preprocessor/byteorder.h>
 #include <cassert>
+#include <climits>
 #include <cstdint>
 #include <cstring>
 #include <stdexcept>
 
 // HELPERS
 // -------
+
+#if (defined(CHAR_BIT) && (CHAR_BIT != 8)) || (defined(__CHAR_BIT__) && (__CHAR_BIT__ != 8))
+#   error "PYCPP (and POSIX) require 8-bit bytes. bswap_impl must patched for correctness."
+#endif
 
 
 /**
