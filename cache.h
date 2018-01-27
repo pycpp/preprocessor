@@ -44,4 +44,14 @@
 #   define CACHELINE_SIZE 64
 #endif
 
+#ifndef CACHE_ALIGNMENT
+// A reasonable default for the cache alignment.
+#   define CACHE_ALIGNMENT 64
+#endif
+
+#ifndef PREFETCH_STRIDE
+// Estimate lookahead size for prefetching.
+#   define PREFETCH_STRIDE 4 * CACHELINE_SIZE
+#endif
+
 #define CACHELINE_ALIGNED __attribute__((aligned(CACHELINE_SIZE)))
