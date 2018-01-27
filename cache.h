@@ -1,5 +1,5 @@
 //  :copyright: (c) 2014 Google Inc. All Rights Reserved.
-//  :copyright: Modified (c) 2017 Alex Huszagh.
+//  :copyright: Modified (c) 2017-2018 Alex Huszagh.
 //  :license: MIT, see licenses/mit.md for more details.
 /**
  *  \addtogroup PyCPP

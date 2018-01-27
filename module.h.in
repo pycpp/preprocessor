@@ -7,11 +7,14 @@
 
 #pragma once
 
+#include <pycpp/preprocessor/abi.h>
 #include <pycpp/preprocessor/architecture.h>
 #include <pycpp/preprocessor/byteorder.h>
+#include <pycpp/preprocessor/cache.h>
 #include <pycpp/preprocessor/compiler.h>
 #include <pycpp/preprocessor/compiler_traits.h>
 #include <pycpp/preprocessor/os.h>
 #include <pycpp/preprocessor/parallel.h>
 #include <pycpp/preprocessor/processor.h>
+#include <pycpp/preprocessor/stdint.h>
 #include <pycpp/preprocessor/tls.h>
