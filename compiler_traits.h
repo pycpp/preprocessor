@@ -18,9 +18,9 @@
  *      #define CPP17_INLINE_VARIABLES          implementation-defined
  *      #define CPP17_NODISCARD                 implementation-defined
  *      #define CPP17_UNUSED                    implementation-defined
- *      #define PYCPP_WEAK_ATTRIBUTE            implementation-defined
- *      #define PYCPP_MALLOC_ATTRIBUTE          implementation-defined
- *      #define PYCPP_WEAK_ASM                  implementation-defined
+ *      #define HAS_INCLUDE(x)                  implementation-defined
+ *      #define HAS_BUILTIN(x)                  implementation-defined
+ *      #define HAS_EXTENSION(x)                implementation-defined
  */
 
 #pragma once
@@ -129,18 +129,37 @@
 #   define CPP11_PARTIAL_IOS 1
 #endif
 
-// NON-STANDARD
+// HAS FEATURES
 // ------------
 
-// Non-standard tools with reasonable defaults on compilers that do
-// not support them.
+// Clang supports numerous `__has_xx` features, which are also sometimes
+// supported by other compilers (like GCC). However, preprocessor
+// operators are not guaranteed to short-circuit, and might error while
+// processing statements like `if __has_builtin && __has_builtin(xx)`,
+// even is `__has_builtin` is not defined.
 
-#ifdef HAVE_MSVC
-#   define PYCPP_WEAK_ATTRIBUTE
-#   define PYCPP_MALLOC_ATTRIBUTE
-#   define PYCPP_WEAK_ASM(x)
+#if defined(__has_builtin)
+#   define HAS_BUILTIN(x) __has_builtin(x)
 #else
-#   define PYCPP_WEAK_ATTRIBUTE __attribute__((weak))
-#   define PYCPP_MALLOC_ATTRIBUTE __attribute__((malloc))
-#   define PYCPP_WEAK_ASM(x) asm("")
+#   define HAS_BUILTIN(x) 0
+#endif
+
+#if defined(__has_extension)
+#   define HAS_EXTENSION(x) __has_extension(x)
+#else
+#   define HAS_EXTENSION(x) 0
+#endif
+
+#if defined(__has_include)
+#   define HAS_INCLUDE(x) __has_include(x)
+#else
+#   define HAS_INCLUDE(x) 0
+#endif
+
+#if defined(__is_identifier)
+#   define IS_IDENTIFIER(x) __is_identifier(x)
+#else
+    // Return 1 for the default, since it evaluates to 0 if the worst is
+    // a reserved identifier and cannot be used for a variable name.
+#   define IS_IDENTIFIER(x) 1
 #endif

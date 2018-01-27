@@ -27,7 +27,7 @@
 
 #pragma once
 
-#include <pycpp/preprocessor/compiler.h>
+#include <pycpp/preprocessor/compiler_traits.h>
 #include <pycpp/preprocessor/os.h>
 
 // HAVE_CXXABI
@@ -35,7 +35,7 @@
 
 // Have <cxxabi.h> header for macros.
 #if defined(HAVE_CLANG)
-#   if defined(__has_include) && __has_include(<cxxabi.h>)
+#   if HAS_INCLUDE(<cxxabi.h>)
 #       define HAVE_CXXABI 1
 #   endif
 #elif defined(__GLIBCXX__) || defined(__GLIBCPP__)
