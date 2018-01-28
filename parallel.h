@@ -30,15 +30,22 @@
 #pragma once
 
 #include <pycpp/config.h>
-#include <pycpp/preprocessor/compiler.h>
-#if defined(PYCPP_CPP17)
-#   include <execution>
+#include <pycpp/preprocessor/compiler_traits.h>
+#if defined(HAVE_CPP17)
+// TODO(ahuszagh): Wish list.
+// None of the STL implements have implemented the parallel execution
+// algorithms.
+// Annotate when `execution_policy` becomes available.
+#   if PYCPP_HAS_INCLUDE(<execution>)
+#       define PYCPP_HAVE_EXECUTION 1
+#       include <execution>
+#   endif
 #endif
 
 // MACROS
 // ------
 
-#if defined(PYCPP_CPP17)
+#if defined(PYCPP_HAVE_EXECUTION)
 #   define SEQUENTIAL_EXECUTION std::execution::seq,
 #   define PARALLEL_EXECUTION std::execution::par,
 #   define PARALLEL_UNSEQUENCED_EXECUTION std::execution::par_unseq,
