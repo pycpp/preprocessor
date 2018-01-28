@@ -64,6 +64,9 @@
  *      #define PYCPP_EMBARCADERO                   implementation-defined
  *      #define PYCPP_XL                            implementation-defined
  *      #define PYCPP_IAR                           implementation-defined
+ *      #define PYCPP_MINGW                         implementation-defined
+ *      #define PYCPP_MINGW_32                      implementation-defined
+ *      #define PYCPP_MINGW_64                      implementation-defined
  */
 
 #pragma once
@@ -88,6 +91,19 @@
 #       define PYCPP_INTEL_PATCH_VERSION __INTEL_COMPILER_UPDATE
 #   else
 #       define PYCPP_INTEL_PATCH_VERSION __INTEL_COMPILER % 10
+#   endif
+#endif
+
+// MINGW
+// -----
+
+// MinGW builds on-top of GCC, so don't define compiler detected.
+// MinGW allows code compilation for Windows using GCC.
+#if defined(__MINGW32__)
+#   define PYCPP_MINGW 1
+#   define PYCPP_MINGW_32 1
+#   if defined(__MINGW64__)
+#       define PYCPP_MINGW_64 1
 #   endif
 #endif
 

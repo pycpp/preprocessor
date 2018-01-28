@@ -22,6 +22,9 @@
  *      #define PYCPP_HAS_BUILTIN(T)                    implementation-defined
  *      #define PYCPP_HAS_EXTENSION(T)                  implementation-defined
  *      #define PYCPP_IS_IDENTIFIER(T)                  implementation-defined
+ *      #define PYCPP_WEAK_ATTRIBUTE                    implementation-defined
+ *      #define PYCPP_MALLOC_ATTRIBUTE                  implementation-defined
+ *      #define PYCPP_WEAK_ASM(T)                       implementation-defined
  */
 
 #pragma once
@@ -163,4 +166,22 @@
     // Return 1 for the default, since it evaluates to 0 if the worst is
     // a reserved identifier and cannot be used for a variable name.
 #   define PYCPP_IS_IDENTIFIER(x) 1
+#endif
+
+
+// NON-STANDARD
+// ------------
+
+// Non-standard attributes that differ significantly between compilers.
+// These are non-portable, but help simplify linking, or code correctness.
+// You should likely not use them as an end-library user.
+
+#if defined(PYCPP_GCC) || defined(PYCPP_CLANG)
+#   define PYCPP_WEAK_ATTRIBUTE __attribute__((weak))
+#   define PYCPP_MALLOC_ATTRIBUTE __attribute__((malloc))
+#   define PYCPP_WEAK_ASM(x) asm("")
+#else
+#   define PYCPP_WEAK_ATTRIBUTE
+#   define PYCPP_MALLOC_ATTRIBUTE
+#   define PYCPP_WEAK_ASM(x)
 #endif
