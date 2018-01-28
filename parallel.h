@@ -31,14 +31,14 @@
 
 #include <pycpp/config.h>
 #include <pycpp/preprocessor/compiler.h>
-#if defined(HAVE_CPP17)
+#if defined(PYCPP_CPP17)
 #   include <execution>
 #endif
 
 // MACROS
 // ------
 
-#if defined(HAVE_CPP17)
+#if defined(PYCPP_CPP17)
 #   define SEQUENTIAL_EXECUTION std::execution::seq,
 #   define PARALLEL_EXECUTION std::execution::par,
 #   define PARALLEL_UNSEQUENCED_EXECUTION std::execution::par_unseq,

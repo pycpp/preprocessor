@@ -20,13 +20,13 @@ PyCPP builds upon a platform abstraction library for cross-compiler support, whi
 
 ## ABI
 
-Macros to detect the C++ ABI. Defines the macro `HAVE_CXXABI` if the compiler has `cxxabi.h`, and uses the Itanium ABI.
+Macros to detect the C++ ABI. Defines the macro `PYCPP_CXXABI` if the compiler has `cxxabi.h`, and uses the Itanium ABI.
 
 ## Architecture
 
-Macros to determine the processor and memory architecture. `SYSTEM_ARCHITECTURE` is defined as `sizeof(uintptr_t)` in bits (16, 32, 64, etc.), or the size of a pointer sufficient to convert to and from a void pointer on the system. `MEMORY_ARCHITECTURE` is defined as `sizeof(size_t)` in bits (16, 32, 64, etc.), or the number of bits required to represent an object's size in a single memory segment. In segmented x86 memory models, such as the Intel 8086, these are not necessarily identical: the size of a pointer may be larger than the maximum object size.
+Macros to determine the processor and memory architecture. `PYCPP_SYSTEM_ARCHITECTURE` is defined as `sizeof(uintptr_t)` in bits (16, 32, 64, etc.), or the size of a pointer sufficient to convert to and from a void pointer on the system. `PYCPP_MEMORY_ARCHITECTURE` is defined as `sizeof(size_t)` in bits (16, 32, 64, etc.), or the number of bits required to represent an object's size in a single memory segment. In segmented x86 memory models, such as the Intel 8086, these are not necessarily identical: the size of a pointer may be larger than the maximum object size.
 
-Architecture also defines 4 macros to detect type alignment to a memory boundary: `IS_ALIGNED_16`, `IS_ALIGNED_32`, `IS_ALIGNED_64`, and `IS_ALIGNED_128`.
+Architecture also defines 4 macros to detect type alignment to a memory boundary: `PYCPP_IS_ALIGNED_16`, `PYCPP_IS_ALIGNED_32`, `PYCPP_IS_ALIGNED_64`, and `PYCPP_IS_ALIGNED_128`.
 
 ## Byte Order
 
@@ -34,11 +34,11 @@ Byte-order contains preprocessor macros and functions to detect and convert to a
 
 ## Cache
 
-Cache attempts to determine the L1 cache line size, and writes the size to `CACHELINE_SIZE`. It also defines another macro, `CACHELINE_ALIGNED`, which aligns a variable to the cache size alignment.
+Cache attempts to determine the L1 cache line size, and writes the size to `PYCPP_CACHELINE_SIZE`. It also defines another macro, `PYCPP_CACHELINE_ALIGNED`, which aligns a variable to the cache size alignment.
 
 ## Compiler
 
-Defines macros to simplify detection of the C++ ISO standard supported (`HAVE_CPP17`, etc.) and the compiler used (`HAVE_MSVC`, `HAVE_GCC`, etc.). See [compiler.h](/compiler.h) for more details.
+Defines macros to simplify detection of the C++ ISO standard supported (`PYCPP_CPP17`, etc.) and the compiler used (`PYCPP_MSVC`, `PYCPP_GCC`, etc.). See [compiler.h](/compiler.h) for more details.
 
 ## Compiler Traits
 
@@ -46,7 +46,7 @@ Defines workarounds for partial C++ standards support by known compilers, and wo
 
 ## Operating System
 
-If the operating system is successfully detected, defines `OS_DETECTED` and a macro for the operating system type. For example, if Linux is detected, PyCPP defines `OS_LINUX` and `OS_DETECTED`. On select platforms, such as macOS, macros for the operating system version (`OS_VERSION_MAJOR`, `OS_VERSION_MINOR`, and `OS_VERSION_PATCH`) are also defined. These macros therefore simplify designing platform-specific not covered by PyCPP. For the complete list of potential operating system defines, see [os.h](/os.h).
+If the operating system is successfully detected, defines `PYCPP_OS_DETECTED` and a macro for the operating system type. For example, if Linux is detected, PyCPP defines `OS_LINUX` and `PYCPP_OS_DETECTED`. On select platforms, such as macOS, macros for the operating system version (`PYCPP_OS_VERSION_MAJOR`, `PYCPP_OS_VERSION_MINOR`, and `PYCPP_OS_VERSION_PATCH`) are also defined. These macros therefore simplify designing platform-specific not covered by PyCPP. For the complete list of potential operating system defines, see [os.h](/os.h).
 
 ## Parallel
 
@@ -67,7 +67,7 @@ int main()
 
 ## Processor
 
-If the processor type is successfully detected, defines `PROCESSOR_DETECTED` and a macro for the processor type. For example, if a 32-bit ARM processor is detected, PyCPP defines `PROCESSOR_ARM32`, `PROCESSOR_ARM`, and `PROCESSOR_DETECTED`. For the complete list of potential processor defines, see [processor.h](/processor.h).
+If the processor type is successfully detected, defines `PYCPP_PROCESSOR_DETECTED` and a macro for the processor type. For example, if a 32-bit ARM processor is detected, PyCPP defines `PYCPP_ARM32`, `PYCPP_ARM`, and `PYCPP_PROCESSOR_DETECTED`. For the complete list of potential processor defines, see [processor.h](/processor.h).
 
 ## Thread Local Storage
 

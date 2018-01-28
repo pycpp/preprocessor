@@ -9,6 +9,10 @@
  *  with thread-local storage will have a separate instance in each
  *  thread, at the cost of slower data access.
  *
+ *  This macro is meant as a keyword-like macro, and therefore
+ *  is currently not prefixed or does not use macro naming
+ *  conventions.
+ *
  *  \code
  *      thread_local_storage int x = 5;
  *
@@ -23,10 +27,10 @@
 // MACROS
 // ------
 
-#if defined(HAVE_CLANG) || defined(HAVE_GCC)
+#if defined(PYCPP_CLANG) || defined(PYCPP_GCC)
 #   define thread_local_storage __thread
-#elif defined(HAVE_MSVC)
-#   if COMPILER_MAJOR_VERSION >= 14
+#elif defined(PYCPP_MSVC)
+#   if PYCPP_COMPILER_MAJOR_VERSION >= 14
 #       define thread_local_storage thread_local
 #   else
 #       define thread_local_storage __declspec(thread)

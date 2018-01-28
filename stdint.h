@@ -8,6 +8,10 @@
  *  of a given memory segment) architecture. Also includes macros
  *  to determine if a given type is aligned to a given byte boundary.
  *
+ *  The macros should be included sparingly, as they do not define
+ *  any namespace prefixes, and are meant to emulate the definitions
+ *  in `<limits.h>`.
+ *
  *  \synopsis
  *      #define INT8_WIDTH          implementation-defined
  *      #define INT16_WIDTH         implementation-defined
@@ -75,6 +79,11 @@
 #   define INT64_WIDTH 64
 #endif
 
+// INT128_WIDTH
+#ifndef INT128_WIDTH
+#   define INT128_WIDTH 128
+#endif
+
 // UINT8_WIDTH
 #ifndef UINT8_WIDTH
 #   define UINT8_WIDTH 8
@@ -95,30 +104,35 @@
 #   define UINT64_WIDTH 64
 #endif
 
+// UINT128_WIDTH
+#ifndef UINT128_WIDTH
+#   define UINT128_WIDTH 128
+#endif
+
 // INT_FAST8_WIDTH
 #ifndef INT_FAST8_WIDTH
 #   if INT_FAST8_MAX == INT8_MAX
-#       define INT_FAST8_WIDTH 8
+#       define INT_FAST8_WIDTH INT8_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST8_WIDTH
 #   if INT_FAST8_MAX == INT16_MAX
-#       define INT_FAST8_WIDTH 16
+#       define INT_FAST8_WIDTH INT16_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST8_WIDTH
 #   if INT_FAST8_MAX == INT32_MAX
-#       define INT_FAST8_WIDTH 32
+#       define INT_FAST8_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST8_WIDTH
 #   if INT_FAST8_MAX == INT64_MAX
-#       define INT_FAST8_WIDTH 64
+#       define INT_FAST8_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST8_WIDTH
 #   if INT_FAST8_MAX == INT128_MAX
-#       define INT_FAST8_WIDTH 128
+#       define INT_FAST8_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST8_WIDTH
@@ -128,22 +142,22 @@
 // INT_FAST16_WIDTH
 #ifndef INT_FAST16_WIDTH
 #   if INT_FAST16_MAX == INT16_MAX
-#       define INT_FAST16_WIDTH 16
+#       define INT_FAST16_WIDTH INT16_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST16_WIDTH
 #   if INT_FAST16_MAX == INT32_MAX
-#       define INT_FAST16_WIDTH 32
+#       define INT_FAST16_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST16_WIDTH
 #   if INT_FAST16_MAX == INT64_MAX
-#       define INT_FAST16_WIDTH 64
+#       define INT_FAST16_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST16_WIDTH
 #   if INT_FAST16_MAX == INT128_MAX
-#       define INT_FAST16_WIDTH 128
+#       define INT_FAST16_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST16_WIDTH
@@ -153,17 +167,17 @@
 // INT_FAST32_WIDTH
 #ifndef INT_FAST32_WIDTH
 #   if INT_FAST32_MAX == INT32_MAX
-#       define INT_FAST32_WIDTH 32
+#       define INT_FAST32_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST32_WIDTH
 #   if INT_FAST32_MAX == INT64_MAX
-#       define INT_FAST32_WIDTH 64
+#       define INT_FAST32_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST32_WIDTH
 #   if INT_FAST32_MAX == INT128_MAX
-#       define INT_FAST32_WIDTH 128
+#       define INT_FAST32_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST32_WIDTH
@@ -173,12 +187,12 @@
 // INT_FAST64_WIDTH
 #ifndef INT_FAST64_WIDTH
 #   if INT_FAST64_MAX == INT64_MAX
-#       define INT_FAST64_WIDTH 64
+#       define INT_FAST64_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST64_WIDTH
 #   if INT_FAST64_MAX == INT128_MAX
-#       define INT_FAST64_WIDTH 128
+#       define INT_FAST64_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_FAST64_WIDTH
@@ -188,27 +202,27 @@
 // INT_LEAST8_WIDTH
 #ifndef INT_LEAST8_WIDTH
 #   if INT_LEAST8_MAX == INT8_MAX
-#       define INT_LEAST8_WIDTH 8
+#       define INT_LEAST8_WIDTH INT8_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST8_WIDTH
 #   if INT_LEAST8_MAX == INT16_MAX
-#       define INT_LEAST8_WIDTH 16
+#       define INT_LEAST8_WIDTH INT16_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST8_WIDTH
 #   if INT_LEAST8_MAX == INT32_MAX
-#       define INT_LEAST8_WIDTH 32
+#       define INT_LEAST8_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST8_WIDTH
 #   if INT_LEAST8_MAX == INT64_MAX
-#       define INT_LEAST8_WIDTH 64
+#       define INT_LEAST8_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST8_WIDTH
 #   if INT_LEAST8_MAX == INT128_MAX
-#       define INT_LEAST8_WIDTH 128
+#       define INT_LEAST8_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST8_WIDTH
@@ -218,22 +232,22 @@
 // INT_LEAST16_WIDTH
 #ifndef INT_LEAST16_WIDTH
 #   if INT_LEAST16_MAX == INT16_MAX
-#       define INT_LEAST16_WIDTH 16
+#       define INT_LEAST16_WIDTH INT16_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST16_WIDTH
 #   if INT_LEAST16_MAX == INT32_MAX
-#       define INT_LEAST16_WIDTH 32
+#       define INT_LEAST16_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST16_WIDTH
 #   if INT_LEAST16_MAX == INT64_MAX
-#       define INT_LEAST16_WIDTH 64
+#       define INT_LEAST16_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST16_WIDTH
 #   if INT_LEAST16_MAX == INT128_MAX
-#       define INT_LEAST16_WIDTH 128
+#       define INT_LEAST16_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST16_WIDTH
@@ -243,17 +257,17 @@
 // INT_LEAST32_WIDTH
 #ifndef INT_LEAST32_WIDTH
 #   if INT_LEAST32_MAX == INT32_MAX
-#       define INT_LEAST32_WIDTH 32
+#       define INT_LEAST32_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST32_WIDTH
 #   if INT_LEAST32_MAX == INT64_MAX
-#       define INT_LEAST32_WIDTH 64
+#       define INT_LEAST32_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST32_WIDTH
 #   if INT_LEAST32_MAX == INT128_MAX
-#       define INT_LEAST32_WIDTH 128
+#       define INT_LEAST32_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST32_WIDTH
@@ -263,12 +277,12 @@
 // INT_LEAST64_WIDTH
 #ifndef INT_LEAST64_WIDTH
 #   if INT_LEAST64_MAX == INT64_MAX
-#       define INT_LEAST64_WIDTH 64
+#       define INT_LEAST64_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST64_WIDTH
 #   if INT_LEAST64_MAX == INT128_MAX
-#       define INT_LEAST64_WIDTH 128
+#       define INT_LEAST64_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INT_LEAST64_WIDTH
@@ -278,27 +292,27 @@
 // UINT_FAST8_WIDTH
 #ifndef UINT_FAST8_WIDTH
 #   if UINT_FAST8_MAX == UINT8_MAX
-#       define UINT_FAST8_WIDTH 8
+#       define UINT_FAST8_WIDTH UINT8_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST8_WIDTH
 #   if UINT_FAST8_MAX == UINT16_MAX
-#       define UINT_FAST8_WIDTH 16
+#       define UINT_FAST8_WIDTH UINT16_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST8_WIDTH
 #   if UINT_FAST8_MAX == UINT32_MAX
-#       define UINT_FAST8_WIDTH 32
+#       define UINT_FAST8_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST8_WIDTH
 #   if UINT_FAST8_MAX == UINT64_MAX
-#       define UINT_FAST8_WIDTH 64
+#       define UINT_FAST8_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST8_WIDTH
 #   if UINT_FAST8_MAX == UINT128_MAX
-#       define UINT_FAST8_WIDTH 128
+#       define UINT_FAST8_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST8_WIDTH
@@ -308,22 +322,22 @@
 // UINT_FAST16_WIDTH
 #ifndef UINT_FAST16_WIDTH
 #   if UINT_FAST16_MAX == UINT16_MAX
-#       define UINT_FAST16_WIDTH 16
+#       define UINT_FAST16_WIDTH UINT16_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST16_WIDTH
 #   if UINT_FAST16_MAX == UINT32_MAX
-#       define UINT_FAST16_WIDTH 32
+#       define UINT_FAST16_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST16_WIDTH
 #   if UINT_FAST16_MAX == UINT64_MAX
-#       define UINT_FAST16_WIDTH 64
+#       define UINT_FAST16_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST16_WIDTH
 #   if UINT_FAST16_MAX == UINT128_MAX
-#       define UINT_FAST16_WIDTH 128
+#       define UINT_FAST16_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST16_WIDTH
@@ -333,17 +347,17 @@
 // UINT_FAST32_WIDTH
 #ifndef UINT_FAST32_WIDTH
 #   if UINT_FAST32_MAX == UINT32_MAX
-#       define UINT_FAST32_WIDTH 32
+#       define UINT_FAST32_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST32_WIDTH
 #   if UINT_FAST32_MAX == UINT64_MAX
-#       define UINT_FAST32_WIDTH 64
+#       define UINT_FAST32_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST32_WIDTH
 #   if UINT_FAST32_MAX == UINT128_MAX
-#       define UINT_FAST32_WIDTH 128
+#       define UINT_FAST32_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST32_WIDTH
@@ -353,12 +367,12 @@
 // UINT_FAST64_WIDTH
 #ifndef UINT_FAST64_WIDTH
 #   if UINT_FAST64_MAX == UINT64_MAX
-#       define UINT_FAST64_WIDTH 64
+#       define UINT_FAST64_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST64_WIDTH
 #   if UINT_FAST64_MAX == UINT128_MAX
-#       define UINT_FAST64_WIDTH 128
+#       define UINT_FAST64_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_FAST64_WIDTH
@@ -368,27 +382,27 @@
 // UINT_LEAST8_WIDTH
 #ifndef UINT_LEAST8_WIDTH
 #   if UINT_LEAST8_MAX == UINT8_MAX
-#       define UINT_LEAST8_WIDTH 8
+#       define UINT_LEAST8_WIDTH UINT8_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST8_WIDTH
 #   if UINT_LEAST8_MAX == UINT16_MAX
-#       define UINT_LEAST8_WIDTH 16
+#       define UINT_LEAST8_WIDTH UINT16_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST8_WIDTH
 #   if UINT_LEAST8_MAX == UINT32_MAX
-#       define UINT_LEAST8_WIDTH 32
+#       define UINT_LEAST8_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST8_WIDTH
 #   if UINT_LEAST8_MAX == UINT64_MAX
-#       define UINT_LEAST8_WIDTH 64
+#       define UINT_LEAST8_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST8_WIDTH
 #   if UINT_LEAST8_MAX == UINT128_MAX
-#       define UINT_LEAST8_WIDTH 128
+#       define UINT_LEAST8_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST8_WIDTH
@@ -398,22 +412,22 @@
 // UINT_LEAST16_WIDTH
 #ifndef UINT_LEAST16_WIDTH
 #   if UINT_LEAST16_MAX == UINT16_MAX
-#       define UINT_LEAST16_WIDTH 16
+#       define UINT_LEAST16_WIDTH UINT16_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST16_WIDTH
 #   if UINT_LEAST16_MAX == UINT32_MAX
-#       define UINT_LEAST16_WIDTH 32
+#       define UINT_LEAST16_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST16_WIDTH
 #   if UINT_LEAST16_MAX == UINT64_MAX
-#       define UINT_LEAST16_WIDTH 64
+#       define UINT_LEAST16_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST16_WIDTH
 #   if UINT_LEAST16_MAX == UINT128_MAX
-#       define UINT_LEAST16_WIDTH 128
+#       define UINT_LEAST16_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST16_WIDTH
@@ -423,17 +437,17 @@
 // UINT_LEAST32_WIDTH
 #ifndef UINT_LEAST32_WIDTH
 #   if UINT_LEAST32_MAX == UINT32_MAX
-#       define UINT_LEAST32_WIDTH 32
+#       define UINT_LEAST32_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST32_WIDTH
 #   if UINT_LEAST32_MAX == UINT64_MAX
-#       define UINT_LEAST32_WIDTH 64
+#       define UINT_LEAST32_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST32_WIDTH
 #   if UINT_LEAST32_MAX == UINT128_MAX
-#       define UINT_LEAST32_WIDTH 128
+#       define UINT_LEAST32_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST32_WIDTH
@@ -443,12 +457,12 @@
 // UINT_LEAST64_WIDTH
 #ifndef UINT_LEAST64_WIDTH
 #   if UINT_LEAST64_MAX == UINT64_MAX
-#       define UINT_LEAST64_WIDTH 64
+#       define UINT_LEAST64_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST64_WIDTH
 #   if UINT_LEAST64_MAX == UINT128_MAX
-#       define UINT_LEAST64_WIDTH 128
+#       define UINT_LEAST64_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINT_LEAST64_WIDTH
@@ -458,22 +472,22 @@
 // INTPTR_WIDTH
 #ifndef INTPTR_WIDTH
 #   if INTPTR_MAX == INT16_MAX
-#       define INTPTR_WIDTH 16
+#       define INTPTR_WIDTH INT16_WIDTH
 #   endif
 #endif
 #ifndef INTPTR_WIDTH
 #   if INTPTR_MAX == INT32_MAX
-#       define INTPTR_WIDTH 32
+#       define INTPTR_WIDTH INT32_WIDTH
 #   endif
 #endif
 #ifndef INTPTR_WIDTH
 #   if INTPTR_MAX == INT64_MAX
-#       define INTPTR_WIDTH 64
+#       define INTPTR_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INTPTR_WIDTH
 #   if INTPTR_MAX == INT128_MAX
-#       define INTPTR_WIDTH 128
+#       define INTPTR_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INTPTR_WIDTH
@@ -483,12 +497,12 @@
 // INTMAX_WIDTH
 #ifndef INTMAX_WIDTH
 #   if INTMAX_MAX == INT64_MAX
-#       define INTMAX_WIDTH 64
+#       define INTMAX_WIDTH INT64_WIDTH
 #   endif
 #endif
 #ifndef INTMAX_WIDTH
 #   if INTMAX_MAX == INT128_MAX
-#       define INTMAX_WIDTH 128
+#       define INTMAX_WIDTH INT128_WIDTH
 #   endif
 #endif
 #ifndef INTMAX_WIDTH
@@ -498,22 +512,22 @@
 // UINTPTR_WIDTH
 #ifndef UINTPTR_WIDTH
 #   if UINTPTR_MAX == UINT16_MAX
-#       define UINTPTR_WIDTH 16
+#       define UINTPTR_WIDTH UINT16_WIDTH
 #   endif
 #endif
 #ifndef UINTPTR_WIDTH
 #   if UINTPTR_MAX == UINT32_MAX
-#       define UINTPTR_WIDTH 32
+#       define UINTPTR_WIDTH UINT32_WIDTH
 #   endif
 #endif
 #ifndef UINTPTR_WIDTH
 #   if UINTPTR_MAX == UINT64_MAX
-#       define UINTPTR_WIDTH 64
+#       define UINTPTR_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINTPTR_WIDTH
 #   if UINTPTR_MAX == UINT128_MAX
-#       define UINTPTR_WIDTH 128
+#       define UINTPTR_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINTPTR_WIDTH
@@ -523,12 +537,12 @@
 // UINTMAX_WIDTH
 #ifndef UINTMAX_WIDTH
 #   if UINTMAX_MAX == UINT64_MAX
-#       define UINTMAX_WIDTH 64
+#       define UINTMAX_WIDTH UINT64_WIDTH
 #   endif
 #endif
 #ifndef UINTMAX_WIDTH
 #   if UINTMAX_MAX == UINT128_MAX
-#       define UINTMAX_WIDTH 128
+#       define UINTMAX_WIDTH UINT128_WIDTH
 #   endif
 #endif
 #ifndef UINTMAX_WIDTH

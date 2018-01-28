@@ -10,6 +10,9 @@
  *  types from host-to-endian and endian-to-host, and memcpy
  *  routines that swap the underlying byte order.
  *
+ *  Do not prefix these macros, as they aim to provide replacements
+ *  for commonly defined macros on unsupported platforms.
+ *
  *  \synopsis
  *      // CONVERSION
  *      void bswap(void* buf, int width) noexcept;
