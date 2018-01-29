@@ -2,7 +2,7 @@
 //  :copyright: (c) 2017-2018 Alex Huszagh.
 //  :license: Public Domain/MIT, see licenses/mit.md for more details.
 /**
- *  \addtogroup PyCPP
+ *  \addtogroup PySTD
  *  \brief System endianess detection macros and byteswap routines.
  *
  *  Cross-platform definitions similar to Linux's `<endian.h>`,

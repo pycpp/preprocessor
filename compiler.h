@@ -2,7 +2,7 @@
 //  :copyright: (c) 2017-2018 Alex Huszagh.
 //  :license: BSD 3-Clause, see licenses/bsd-3.md for more details.
 /**
- *  \addtogroup PyCPP
+ *  \addtogroup PySTD
  *  \brief Compiler detection macros.
  *
  *  Macros to detect the compiler type, version, and the C++ ISO standard

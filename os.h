@@ -4,7 +4,7 @@
 //  :copyright: (c) 2017-2018 Alex Huszagh.
 //  :license: Boost, see licenses/boost.md for more details.
 /**
- *  \addtogroup PyCPP
+ *  \addtogroup PySTD
  *  \brief Detect operating system for build.
  *
  *  Macros to detect the operating system and potentially the operating
